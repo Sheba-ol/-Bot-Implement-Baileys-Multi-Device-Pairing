@@ -20,10 +20,25 @@ import {
 import { Boom } from "@hapi/boom";
 import pino from "pino";
 import { createInterface } from "readline";
+import express from "express";
 
 import config from "./config/index.js";
 import { handleMessage } from "./handlers/commandHandler.js";
 import { verifySmtpConnection } from "./services/emailService.js";
+
+// ── Express Health-Check Server (required by Render) ──────────────────────────
+// Render expects a bound HTTP port — without this the deployment is killed.
+// The /ping route is used by uptime monitors (e.g. BetterUptime, UptimeRobot)
+// to keep the free-tier dyno alive between WhatsApp messages.
+const app = express();
+const PORT = process.env.PORT || 10000; // Render injects PORT automatically
+
+app.get("/", (_req, res) => res.send("✅ WhatsApp Bot is running!"));
+app.get("/ping", (_req, res) => res.json({ status: "ok", ts: Date.now() }));
+
+app.listen(PORT, () =>
+  console.log(`[Health] HTTP server listening on port ${PORT}`)
+);
 
 // ── Logger ─────────────────────────────────────────────────────────────────────
 // Baileys is very verbose by default — we suppress noise below "warn" level.
