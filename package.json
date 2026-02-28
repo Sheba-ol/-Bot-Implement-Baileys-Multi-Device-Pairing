@@ -1,18 +1,16 @@
 {
-  "name": "whatsapp-pro-bot",
+  "name": "axap-whatsapp-bot",
   "version": "1.0.0",
-  "description": "WhatsApp Bot with Pro user tiers, payment gating, and email integration",
-  "main": "src/index.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "node --watch src/index.js"
+    "start": "node index.js"
   },
   "dependencies": {
-    "@whiskeysockets/baileys": "^6.7.9",
+    "@whiskeysockets/baileys": "latest",
+    "express": "^4.18.2",
     "nodemailer": "^6.9.14",
-    "pino": "^9.3.2",
-    "qrcode-terminal": "^0.12.0"
+    "pino": "^9.3.2"
   },
   "engines": {
     "node": ">=18.0.0"
