@@ -1,0 +1,20 @@
+{
+  "name": "whatsapp-pro-bot",
+  "version": "1.0.0",
+  "description": "WhatsApp Bot with Pro user tiers, payment gating, and email integration",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.9",
+    "nodemailer": "^6.9.14",
+    "pino": "^9.3.2",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
